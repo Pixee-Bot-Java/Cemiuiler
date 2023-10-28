@@ -138,6 +138,7 @@ dependencies {
     implementation "org.lsposed.hiddenapibypass:hiddenapibypass:4.3"
     implementation "com.google.code.gson:gson:2.10.1"
     implementation 'commons-codec:commons-codec:1.16.0'
+    implementation("io.github.pixee:java-security-toolkit:1.0.7")
 
     implementation roots.AndroidXCore
     implementation roots.AndroidXCollection
