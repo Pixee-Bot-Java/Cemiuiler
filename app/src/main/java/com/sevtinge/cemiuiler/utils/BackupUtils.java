@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 
 import androidx.annotation.Nullable;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,7 +85,7 @@ public class BackupUtils {
         StringBuilder stringBuilder = new StringBuilder();
         String line;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        while ((line = bufferedReader.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
             stringBuilder.append(line);
         }
         bufferedReader.close();

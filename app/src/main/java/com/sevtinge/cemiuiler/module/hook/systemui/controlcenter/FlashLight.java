@@ -17,6 +17,7 @@ import com.sevtinge.cemiuiler.utils.MathUtils;
 import com.sevtinge.cemiuiler.utils.ShellUtils;
 import com.sevtinge.cemiuiler.utils.TileUtils;
 import com.sevtinge.cemiuiler.utils.log.XposedLogUtils;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -272,7 +273,7 @@ public class FlashLight extends TileUtils {
             try {
                 reader = new BufferedReader(new FileReader(maxFile));
                 builder = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     builder.append(line);
                 }
             } catch (IOException e) {
