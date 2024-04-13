@@ -1,6 +1,7 @@
 package com.sevtinge.cemiuiler.utils;
 
 import com.sevtinge.cemiuiler.utils.log.AndroidLogUtils;
+import io.github.pixee.security.BoundedLineReader;
 import io.github.pixee.security.SystemCommand;
 
 import java.io.BufferedReader;
@@ -169,10 +170,10 @@ public class ShellUtils {
                 successResult = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 errorResult = new BufferedReader(new InputStreamReader(process.getErrorStream()));
                 String s;
-                while ((s = successResult.readLine()) != null) {
+                while ((s = BoundedLineReader.readLine(successResult, 5_000_000)) != null) {
                     successMsg.append(s);
                 }
-                while ((s = errorResult.readLine()) != null) {
+                while ((s = BoundedLineReader.readLine(errorResult, 5_000_000)) != null) {
                     errorMsg.append(s);
                 }
             }

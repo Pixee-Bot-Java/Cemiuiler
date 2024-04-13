@@ -20,6 +20,7 @@ import com.sevtinge.cemiuiler.utils.ShellUtils;
 import com.sevtinge.cemiuiler.utils.TileUtils;
 import com.sevtinge.cemiuiler.utils.log.AndroidLogUtils;
 import com.sevtinge.cemiuiler.utils.log.XposedLogUtils;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -398,7 +399,7 @@ public class SunlightMode extends TileUtils {
         try {
             reader = new BufferedReader(new FileReader(path));
             builder = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 builder.append(line);
             }
         } catch (IOException e) {
